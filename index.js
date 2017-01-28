@@ -38,6 +38,10 @@ module.exports = {
         {
           match: /process\.env\.NODE_ENV/g,
           replacement: `"${app.env}"`
+        },
+        {
+          match: /(function addImmutabilityTag\(.*?\{)/,
+          replacement: '$1\n    addPropertyTo(target, Ember.GUID_KEY, Ember.generateGuid());'
         }
       ]
     })
